@@ -3,7 +3,7 @@ package service
 import (
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
-	"github.com/special-force/go-test/internal/entity"
+	"github.com/FirdavsMF/wallet-api/internal/entity"
 )
 
 type walletSer struct {
