@@ -1,4 +1,4 @@
-package repository
+package service
 
 import (
 	"fmt"
@@ -7,19 +7,19 @@ import (
 	"github.com/FirdavsMF/wallet-api/internal/entity"
 )
 
-type clientRepo struct {
+type clientSer struct {
 	*sqlx.DB
 }
 
-func NewClientRepo(db *sqlx.DB) *clientRepo {
+func NewClientSer(db *sqlx.DB) *clientSer {
 	return &clientRepo{db}
 }
 
-type ClientRepo interface {
+type ClientSer interface {
 	GetByWalletID(int, *sqlx.Tx) (entity.Client, error)
 }
 
-func (c *clientRepo) GetByWalletID(id int, tx *sqlx.Tx) (entity.Client, error) {
+func (c *clientSer) GetByWalletID(id int, tx *sqlx.Tx) (entity.Client, error) {
 	client := entity.Client{}
 	var err error
 	if tx != nil {

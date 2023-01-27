@@ -10,8 +10,8 @@ type walletSer struct {
 	*sqlx.DB
 }
 
-func NewWalletSer(db *sqlx.DB) *walletRepo {
-	return &walletRepo{db}
+func NewWalletSer(db *sqlx.DB) *walletSer {
+	return &walletSer{db}
 }
 
 type WalletHistory struct {
@@ -26,13 +26,13 @@ type WalletSer interface {
 	GetWalletHistory(string) (WalletHistory, error)
 }
 
-func (w *walletRepo) GetByID(id int) (entity.Wallet, error) {
+func (w *walletSer) GetByID(id int) (entity.Wallet, error) {
 	wallet := entity.Wallet{}
 	err := w.Get(&wallet, "SELECT * FROM \"Wallets\" WHERE id = '$1'", id)
 	return wallet, err
 }
 
-func (w *walletRepo) GetByLogin(login string, tx *sqlx.Tx) (entity.Wallet, error) {
+func (w *walletSer) GetByLogin(login string, tx *sqlx.Tx) (entity.Wallet, error) {
 	wallet := entity.Wallet{}
 	var err error
 	if tx != nil {
@@ -45,7 +45,7 @@ func (w *walletRepo) GetByLogin(login string, tx *sqlx.Tx) (entity.Wallet, error
 	return wallet, err
 }
 
-func (w *walletRepo) ChargeWallet(tx *sqlx.Tx, login string, sum float64) error {
+func (w *walletSer) ChargeWallet(tx *sqlx.Tx, login string, sum float64) error {
 	var err error
 	if tx != nil {
 		_, err = tx.MustExec(`UPDATE "Wallets" SET sum=sum+$1 WHERE login = $2`, sum, login).RowsAffected()
@@ -56,7 +56,7 @@ func (w *walletRepo) ChargeWallet(tx *sqlx.Tx, login string, sum float64) error 
 	return err
 }
 
-func (w *walletRepo) GetWalletHistory(login string) (WalletHistory, error) {
+func (w *walletSer) GetWalletHistory(login string) (WalletHistory, error) {
 	walletHistory := WalletHistory{}
 	err := w.Get(&walletHistory, `SELECT sum(sum),count(*) FROM "Payments" WHERE src=$1 or dest=$1   
 	  and created_at BETWEEN  date_trunc('month', current_date)::date and  (date_trunc('month', now()) + interval '1 month - 1 day')::date
