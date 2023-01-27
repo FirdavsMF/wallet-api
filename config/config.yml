@@ -1,0 +1,23 @@
+app:
+  name: 'go-wallet-alif-test'
+  version: '1.0.0'
+
+http:
+  port: ':8080'
+
+logger:
+  log_level: 'error'
+  rollbar_env: 'go-wallet-alif-test'
+
+postgres:
+  username: 'postgres'
+  password: '1'
+  port: '5432'
+  dbName: 'postgres'
+  host: 'localhost'
+
+redis:
+  addr: '6379'
+  host: 'localhost'
+  username: ''
+  password: ''

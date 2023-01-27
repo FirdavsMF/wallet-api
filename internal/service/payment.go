@@ -3,8 +3,8 @@ package service
 import (
 	"time"
 
-	"github.com/jmoiron/sqlx"
 	"github.com/FirdavsMF/wallet-api/internal/entity"
+	"github.com/jmoiron/sqlx"
 )
 
 type paymentSer struct {
@@ -12,10 +12,10 @@ type paymentSer struct {
 }
 
 func NewPaymentSer(db *sqlx.DB) *paymentSer {
-	return &paymentRepo{db}
+	return &paymentSer{db}
 }
 
-type PaymentRepo interface {
+type PaymentSer interface {
 	GetByExtID(*sqlx.Tx, string) (*entity.Payment, error)
 	CreatePayment(*sqlx.Tx, string, string, float64, string) error
 }

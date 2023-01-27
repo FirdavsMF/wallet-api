@@ -21,13 +21,13 @@ type usecase struct {
 	clientRepo  service.ClientSer
 	paymentRepo service.PaymentSer
 	auth        service.Authentificator
-	logger      service.Interface
+	logger      logger.Interface
 }
 
 type Usecase interface {
 	Charge(src string, dest string, sum float64) (string, error)
 	WalletExists(login string) (entity.Wallet, bool)
-	WalletHistory(login string) (repository.WalletHistory, error)
+	WalletHistory(login string) (service.WalletHistory, error)
 	GetLogin(login string) (entity.User, error)
 	UserValidate(ctx context.Context, id int) error
 	CheckUserByID(ctx context.Context, id int) bool
@@ -125,7 +125,7 @@ func (u *usecase) WalletExists(login string) (entity.Wallet, bool) {
 	return wallet, true
 }
 
-func (u *usecase) WalletHistory(login string) (repository.WalletHistory, error) {
+func (u *usecase) WalletHistory(login string) (service.WalletHistory, error) {
 	return u.walletRepo.GetWalletHistory(login)
 }
 

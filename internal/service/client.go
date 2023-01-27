@@ -12,7 +12,7 @@ type clientSer struct {
 }
 
 func NewClientSer(db *sqlx.DB) *clientSer {
-	return &clientRepo{db}
+	return &clientSer{db}
 }
 
 type ClientSer interface {
