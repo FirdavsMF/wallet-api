@@ -209,8 +209,8 @@ ALTER TABLE ONLY public."Payments" ALTER COLUMN id SET DEFAULT nextval('public."
 --
 
 COPY public."Clients" (id, first_name, last_name, identified, wallet_id, passport_number) FROM stdin;
-1	Ёров	Шерали	t	1	somepassid
-2	Ёрзода	Бехзад	f	2	behid
+1       Firdavs	Masharifov	t	1	somepassid
+2       Zabir	Miraliev	f	2	behid
 \.
 
 
@@ -253,8 +253,8 @@ COPY public."Payments" (id, src, dest, sum, created_at, updated_at, processed_at
 --
 
 COPY public."Users" (id, first_name, last_name, login, password, salt, partner_id, wallet_id) FROM stdin;
-1	Чахонгир	Чамолов	jjamolov	9CGIGaKKrMRg1IfszVJrANk8i-0g7Q4y2HgE0U9BRF4=	Gl3!#j	1	3
-2	Фаррух	Суллейманов	farrukh1111	288519f953133ade284a2f0b03dc15e1c9273e3ebdb1af4e327f705975c59cfb	b3otee	2	4
+1	Shamshod Jamolov jjamolov	9CGIGaKKrMRg1IfszVJrANk8i-0g7Q4y2HgE0U9BRF4=	Gl3!#j	1	3
+2	Ismoili	Farrukh	farrukh1111	288519f953133ade284a2f0b03dc15e1c9273e3ebdb1af4e327f705975c59cfb	b3otee	2	4
 \.
 
 
@@ -266,9 +266,9 @@ COPY public."Users" (id, first_name, last_name, login, password, salt, partner_i
 
 COPY public."Wallets" (id, login, sum, created_at, updated_at) FROM stdin;
 4	ekshata1111	116	2022-01-15	\N
-2	917196244	67.38	2022-01-15	\N
+2	911111111	67.38	2022-01-15	\N
 3	alif_partner_77	19530.98	2022-01-15	\N
-1	917220068	401.64	2022-01-15	\N
+1	921111111	401.64	2022-01-15	\N
 \.
 
 
